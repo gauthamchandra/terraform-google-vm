@@ -155,9 +155,11 @@ resource "google_compute_region_autoscaler" "autoscaler" {
     dynamic "metric" {
       for_each = var.autoscaling_metric
       content {
-        name   = lookup(metric.value, "name", null)
-        target = lookup(metric.value, "target", null)
-        type   = lookup(metric.value, "type", null)
+        name                       = lookup(metric.value, "name", null)
+        target                     = lookup(metric.value, "target", null)
+        type                       = lookup(metric.value, "type", null)
+        filter                     = lookup(metric.value, "filter", null)
+        single_instance_assignment = lookup(metric.value, "single_instance_assignment", null)
       }
     }
     dynamic "load_balancing_utilization" {
